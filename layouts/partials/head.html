@@ -1,5 +1,5 @@
 <head>
-    <title> {{.Site.Params.author}}{{ with .Title }} | {{ . }}{{ end }} </title>
+    <title> {{.Site.Params.title}}{{ with .Title }} | {{ . }}{{ end }} </title>
 
     <!-- Meta -->
     <meta charset="utf-8">
@@ -10,8 +10,12 @@
     <meta name="google-site-verification" content="{{ .Site.Params.googleSiteVerify }}">
     {{- end -}}
 
+    <!-- RSS, other -->
+    {{ range .AlternativeOutputFormats -}}
+        {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
+    {{ end -}}
+
     <!-- CSS -->
-    
     {{ if eq .Site.Language.LanguageDirection "rtl"}}
     {{ $style := resources.Get "css/style.rtl.css" | resources.Minify | resources.Fingerprint }}
     <link rel="stylesheet"
@@ -27,6 +31,14 @@
         crossorigin="anonymous"
         type="text/css">
     {{end}}
+
+    {{ $additionalClassesStyle := resources.Get "css/additional-classes.css" | resources.Minify | resources.Fingerprint }}
+    <link rel="stylesheet"
+        href="{{ $additionalClassesStyle.RelPermalink }}"
+        integrity="{{ $additionalClassesStyle.Data.Integrity }}"
+        crossorigin="anonymous"
+        type="text/css">
+
     {{ $markupHighlightStyle := resources.Get "css/markupHighlight.css" | resources.Minify | resources.Fingerprint }}
     <link rel="stylesheet"
         href="{{ $markupHighlightStyle.RelPermalink }}"
@@ -42,6 +54,9 @@
         crossorigin="anonymous"
         media="screen" />
     {{ end }}
+
+
+
     <link rel="stylesheet" 
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" 
     integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" 
@@ -106,10 +121,6 @@
     {{ template "_internal/twitter_cards.html" . }}
 
     <!-- Open Graph -->
-    {{- if isset .Site.Taxonomies "series" }}
-    {{- if not (eq (len .Site.Taxonomies.series) 0) -}}
     {{ template "_internal/opengraph.html" . }}
-    {{- end -}}
-    {{- end }}
 
 </head>
