@@ -43,17 +43,25 @@ html {
 
 body {
     color: var(--body-color);
-    font-family: 'PingHei', 'PingFang SC', Helvetica Neue, 'Work Sans', 'Hiragino Sans GB', 'Microsoft YaHei', SimSun, sans-serif;
+    font-family: "Lexend Deca","Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 15px;
     width: 100%;
     margin: 0 auto 30px auto;
     background-color: var(--bg-color);
 }
 
+ul {
+    font-family: inherit;
+    font-size: inherit;
+}
+li {
+    font-family: inherit;
+    font-size: inherit;
+}
+
 p {
     line-height: 1.9em;
     font-weight: 400;
-    font-size: 14px;
 }
 
 a {
@@ -88,11 +96,25 @@ blockquote {
     margin: 5px 8px 5px 0;
 }
 
+code {
+    font-family: "andale mono",monospace;
+    font-weight: bold;
+}
+
 pre {
+    font-family: "andale mono",monospace;
+    font-weight: bold;
     background-color: var(--pre-bg-color);
     padding: 5px;
     display: block;
     overflow-x: auto;
+}
+
+.highlight pre {
+    padding: 10px;
+    /*background-color: #f8f8f8;*/
+    border: solid 1px var(--form-border-color);
+    border-radius: 4px;
 }
 
 .info i {
