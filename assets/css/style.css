@@ -16,6 +16,7 @@
     --blockquote-border-color: #dfe2e5;
     --link-color: #0366d7;
     --thumbnail-height: 15em;
+    --thumbnail-width: 15em;
     scroll-padding-top: 100px;
 }
 
@@ -430,7 +431,6 @@ a:active {
 
 .post .post-footer {
     padding: 0 0 10px 0;
-    border-bottom: 1px solid var(--border-color);
 }
 
 .post .post-footer .meta {
@@ -528,22 +528,68 @@ a:active {
     text-decoration: none;
 }
 
+.home-post {
+    width: 100%;
+    display: flex;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.home-post-thumbnail {
+    width: var(--thumbnail-width);
+    padding-bottom: 1em;
+    box-shadow: black;
+    transition: box-shadow .3s ease;
+    display: block;
+    margin-right: 2em;
+}
+
+.home-post-thumbnail img {
+    width: var(--thumbnail-width);
+    height: var(--thumbnail-height);
+    object-fit: cover;
+    border-radius: 0.5em;
+    border: 1px solid var(--border-color);
+}
+
+.home-post-description-container {
+    width: 40%;
+    margin-left: 0; margin-right: 0;
+    display: block;
+    flex-grow: 1;
+}
+
+@media (max-width: 960px) {
+    .home-post {
+        display: block;
+    }
+    .home-post-thumbnail {
+        width: 100%;
+        display: block;
+        margin-right: 0;
+    }
+    .home-post-thumbnail img {
+        width: 100%;
+        object-fit: cover;
+    }
+    .home-post-description-container {
+        width: auto;
+        display: block;
+    }    
+}
+
 .post .post-thumbnail {
     width: 100%;
     padding-bottom: 1em;
     box-shadow: black;
-    border-radius: 0.5em;
-    overflow: hidden;
     transition: box-shadow .3s ease;
-    
 }
 
 .post .post-thumbnail img {
     width: 100%;
     height: var(--thumbnail-height);
     object-fit: cover;
-    border: 1px solid var(--border-color);
-    border-bottom: 0px;
+    border-radius: 0.5em;
+    border: 2px solid var(--border-color);
 }
 
 .pagination {
@@ -656,15 +702,14 @@ a:active {
 
 .list-with-title .listing .listing-post .post-time {
     float: right;
-    display: inline-block;
-    max-width: 10%;
+    display: inline;
     text-align: right;
     color: #C5C5C5;
 }
 
 .list-with-title .listing .listing-post a {
     color: #8F8F8F;
-    width: 90%;
+    width: 80%;
     display: inline-block;
 }
 
