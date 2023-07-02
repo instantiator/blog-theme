@@ -57,10 +57,11 @@ ul {
 li {
     font-family: inherit;
     font-size: inherit;
+    line-height: 1.5em;
 }
 
 p {
-    line-height: 1.9em;
+    line-height: 1.5em;
     font-weight: 400;
 }
 
@@ -70,9 +71,11 @@ a {
 }
 
 blockquote {
-    padding: 0 1em;
+    padding: 0 0.5em;
     border-left: .25em solid var(--blockquote-border-color);
     color: var(--blockquote-text-color);
+    margin-inline-start: 0;
+    margin-inline-end: 1em;
 }
 
 .category {
